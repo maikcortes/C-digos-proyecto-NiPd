@@ -1,23 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-SlabToSuperSlab.py  —  robust in-plane supercell builder (edge-safe) + freeze carry-over
-========================================================================================
-• Scans relaxed QE *.out in ROOT_DIR.
-• For each system (T variant group), picks the lowest final energy.
-• Builds a supercell using an edge-safe expand(+1)/crop so no atoms are lost on borders.
-• Freezes EXACTLY the bottom FROZEN_PLANES atomic planes of the original 1×1 slab
-  and maps those frozen atoms into the supercell (instead of re-detecting on the supercell).
-• Writes: structures/*.xyz, *.cif (wrap=False)  and inputs/*.in, *.lsf
-• Prints sanity checks for plane populations and atom counts.
-
-Notes
------
-- “Atomic planes” here means groups of atoms with ~equal z (along cell ĉ),
-  detected with a robust adaptive tolerance.
-- The supercell keeps the original slab’s PBC: typically (True, True, False).
-- CIF is written with wrap=False to avoid losing/mirroring atoms.
-"""
-
 from pathlib import Path
 from datetime import date
 import re
@@ -28,10 +9,10 @@ from ase import Atoms
 from ase.constraints import FixAtoms
 
 # ───────────── USER SETTINGS ───────────────────────────────────────────────
-ROOT_DIR         = Path(r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\New\Supercell\SurfaceEnergy\111_1x1\relax")
+ROOT_DIR         = Path(r"Path")
 
 # Save here (two folders will be created: structures/ and inputs/)
-OUTPUT_DIR       = Path(r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\New\Supercell\SurfaceEnergy\111_3x3")
+OUTPUT_DIR       = Path(r"Path")
 PRESERVE_SUBDIRS = True               # keep relative subpath under ROOT_DIR
 
 STRUCT_SUBDIR    = "structures"       # .xyz, .cif
@@ -45,15 +26,15 @@ FROZEN_PLANES    = 2                  # bottom N atomic planes of 1×1 slab to f
 KPOINTS          = (1, 1, 1)
 ECUTWFC, ECUTRHO = 60, 480
 DEGAUSS          = 0.0146997171
-PSEUDO_DIR       = "/tmpu/mdach_g/mdach/PP"
+PSEUDO_DIR       = "Path"
 PSEUDO_MAP       = {"Ni": "Ni.upf", "Pd": "Pd.upf"}
 START_MAGN       = {"Ni": 0.75, "Pd": 0.1}    # starting magnetizations
 
 # LSF job defaults
-QUEUE_NAME       = "q_residual"
-QUEUE_CORES      = 64
+QUEUE_NAME       = "q_"
+QUEUE_CORES      = cores
 OMP_THREADS      = 1                           # 1 = pure MPI; 2 = hybrid (ranks = CORES//2)
-RESOURCE_STRING  = 'span[ptile=16]'             # or 'span[ptile=32]' for 32-core nodes
+RESOURCE_STRING  = 'span[ptile=]'             # or 'span[ptile=32]' for 32-core nodes
 
 # ───────────── Internals ───────────────────────────────────────────────────
 END_OK_RE        = re.compile(r"JOB\s*DONE", re.I)
@@ -411,3 +392,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
