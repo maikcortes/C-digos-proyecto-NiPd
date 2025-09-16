@@ -8,8 +8,8 @@ import re
 import numpy as np
 
 # ---------------- USER SETTINGS ----------------
-ROOT_DIR = Path(r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\New\CeldaUnitaria")
-DEST_DIR = Path(r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\New\Supercell\SurfaceEnergy\111_1x1")
+ROOT_DIR = Path(r"Path")
+DEST_DIR = Path(r"Path")
 
 HKL_INPUT          = (3, 1, 1)     # base Miller index; scans its {hkl} family if you want
 SCAN_FAMILY        = True          # set True to scan permutations of HKL_INPUT
@@ -24,7 +24,7 @@ AREA_DECIMALS      = 3              # quantize area to merge numeric dupes
 # QE input defaults
 CALCULATION_QE  = "relax"
 OUTDIR_QE       = "."
-PSEUDO_DIR      = "/tmpu/isholek_g/isholek/MIGUEL/QE/PP"
+PSEUDO_DIR      = "Path"
 PSEUDO_MAP      = {"Ni": "Ni.upf", "Pd": "Pd.upf"}
 INPUT_DFT_QE    = "PBE"
 ECUTWFC_QE      = 60.0
@@ -44,9 +44,9 @@ ION_DYN_QE      = "bfgs"
 START_MAG_MAP   = {"Ni": 0.65, "Pd": 0.00}
 
 # LSF
-LSF_QUEUE = "q_residual"
+LSF_QUEUE = "q_"
 LSF_NPROC = 16
-LSF_EMAIL = "ccuan@pceim.unam.mx"
+LSF_EMAIL = "mail"
 
 # k-mesh settings
 BULK_KPOINTS_FALLBACK = (4, 4, 4)   # used if bulk .out has no K_POINTS automatic block
@@ -519,3 +519,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
