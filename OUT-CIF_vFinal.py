@@ -1,18 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-qe2cif_accurate_recursive.py ─ Convierte .out de QE (convergidos) a CIF SIN repetir la celda.
-Ajusta posiciones fraccionales con un epsilon para que VESTA muestre correctamente
-átomos en los bordes bajo PBC (sin superceldas en el archivo).
-
-Uso:
-1) Ajusta ROOT_DIR (entrada) y OUT_DIR (salida).
-2) Ejecuta en Spyder / Terminal.
-   - Terminal: python qe2cif_accurate_recursive.py "carpeta_in" "carpeta_out"
-
-Dependencias:
-    conda install -c conda-forge ase
-"""
-
 from pathlib import Path
 import sys
 from typing import Optional, Iterable
@@ -23,9 +9,9 @@ import numpy as np
 # ============ CONFIGURACIÓN ============
 
 # Carpeta raíz con .out de QE
-ROOT_DIR = r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\HER_Molecules"
+ROOT_DIR = r"Path"
 # Carpeta raíz donde guardar .cif (se conserva la estructura de subcarpetas)
-OUT_DIR  = r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Images\HER_Molecules"
+OUT_DIR  = r"Path"
 
 # Marcadores de convergencia en el .out de QE
 END_OK   = "JOB DONE."
@@ -164,3 +150,4 @@ if __name__ == "__main__":
     else:
         print("[ℹ] Sin argumentos. Usando ROOT_DIR y OUT_DIR por defecto.")
         main()
+
