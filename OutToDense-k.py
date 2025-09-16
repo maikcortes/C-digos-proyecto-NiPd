@@ -1,17 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-promote_best_Tx_to_scf.py — v1.3
-• Picks best among *_T1 / *_T2 (most negative H, then E).
-• Uses optimized coordinates from the final coordinates block in OUT.
-• Copies per-atom flags VERBATIM (only when present on that line).
-• Copies CELL_PARAMETERS verbatim from the matching source *.in (same stem) or from the .out.
-• Writes SCF inputs/jobs named strictly as: <System>_<Plane>.{in,lsf,out}
-  - System = first token in original name, normalized to explicit counts (NiPd3 → Ni1Pd3, Pd → Pd1).
-  - Plane  = first 3-digit block in the name (e.g., 200 / 111 / 220). Files without a plane are skipped.
-
-Requires: pip install ase
-"""
-
 from pathlib import Path
 import re
 from typing import Dict, Tuple, List, Optional
@@ -20,17 +7,17 @@ import numpy as np
 from ase.io import read
 
 # ───────────── User settings ─────────────
-SRC_DIR  = Path(r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\Supercell\SurfaceEnergy\311_1x1\relax")
-DEST_DIR = Path(r"G:\My Drive\Work\UNAM\Doctorado\Proyecto\Resultados\Nanoparticles\QE\Supercell\SurfaceEnergy\311_1x1\SCF")
+SRC_DIR  = Path(r"Path")
+DEST_DIR = Path(r"Path")
 
 KPOINTS_FINE: Tuple[int,int,int] = (20, 10, 1)
 
-PSEUDO_DIR  = r"/tmpu/mdach_g/mdach/PP"
+PSEUDO_DIR  = r"Path"
 PSEUDO: Dict[str, str] = {"Ni": "Ni.upf", "Pd": "Pd.upf"}
 
-QUEUE_NAME = "q_hpc"
+QUEUE_NAME = "q_"
 NCORES     = 24
-USER_EMAIL = "ccuan@pceim.unam.mx"
+USER_EMAIL = "email"
 PW_MODULES = [
     "tbb/2021.6.0",
     "compiler-rt/2022.1.0",
@@ -528,3 +515,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
